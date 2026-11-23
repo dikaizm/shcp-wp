@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 1.6.2
+Version: 1.7.0
 Text Domain: shcp
 */
 
@@ -23,6 +23,17 @@ body { font-family: Poppins, sans-serif; color: var(--shcp-navy); letter-spacing
 .shcp-btn__icon { width: 10px; height: 10px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; }
 .shcp-btn__icon--right { transform: rotate(-45deg); }
 .shcp-btn__icon--down { transform: rotate(45deg); margin-top: -6px; }
+
+/* ---------- Section reveal: fade in + small move up (see site.js) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+	.shcp-js :is([data-elementor-type="wp-page"], [data-elementor-type="single-post"]) > .e-con:not(:first-child) {
+		transition: opacity .7s cubic-bezier(.22, .61, .36, 1), transform .7s cubic-bezier(.22, .61, .36, 1);
+	}
+	.shcp-js :is([data-elementor-type="wp-page"], [data-elementor-type="single-post"]) > .e-con:not(:first-child):not(.is-in) {
+		opacity: 0;
+		transform: translateY(28px);
+	}
+}
 
 /* ---------- Header ---------- */
 /* Fixed header: pinned while scrolling; anchors stop below it */

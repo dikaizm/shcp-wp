@@ -313,3 +313,13 @@ add_shortcode( 'shcp_hero_slider', function () {
 	return '<section class="shcp-slider" aria-roledescription="carousel">' . $out
 		. ( count( $slides ) > 1 ? '<div class="shcp-slider__dots">' . $dots . '</div>' : '' ) . '</section>';
 } );
+
+// Section reveal (fade in + small move up): the class is set before first paint so sections
+// never flash visible-then-hidden. If site.js doesn't confirm within 4s, everything is shown.
+add_action( 'wp_head', function () {
+	// Not inside the Elementor editor preview: new sections must stay visible while editing.
+	if ( isset( $_GET['elementor-preview'] ) || ( class_exists( '\\Elementor\\Plugin' ) && \Elementor\Plugin::$instance->preview->is_preview_mode() ) ) {
+		return;
+	}
+	echo "<script>(function(d){d.classList.add('shcp-js');setTimeout(function(){d.classList.contains('shcp-ready')||d.classList.remove('shcp-js')},4000)})(document.documentElement)</script>\n";
+}, 1 );

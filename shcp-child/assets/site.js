@@ -91,3 +91,21 @@ document.querySelectorAll('.shcp-slider').forEach(function (slider) {
 	});
 	play();
 });
+
+// Section reveal: add .is-in when a section scrolls into view (styles in style.css).
+(function () {
+	var root = document.documentElement;
+	if (!root.classList.contains('shcp-js')) return;
+	var sections = document.querySelectorAll(':is([data-elementor-type="wp-page"], [data-elementor-type="single-post"]) > .e-con:not(:first-child)');
+	if (!('IntersectionObserver' in window)) {
+		sections.forEach(function (s) { s.classList.add('is-in'); });
+	} else {
+		var io = new IntersectionObserver(function (entries) {
+			entries.forEach(function (e) {
+				if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+			});
+		}, { rootMargin: '0px 0px -8% 0px' });
+		sections.forEach(function (s) { io.observe(s); });
+	}
+	root.classList.add('shcp-ready');
+})();
