@@ -53,9 +53,9 @@ services:
       - ./html:/var/www/html
       - ./php.ini:/usr/local/etc/php/conf.d/zz-shcp.ini:ro
       - ./fpm.conf:/usr/local/etc/php-fpm.d/zz-shcp.conf:ro
-      # Theme + mail catcher come from git (repo/), so `git pull` updates the site
-      - ./repo/shcp-child:/var/www/html/wp-content/themes/shcp-child:ro
-      - ./repo/deploy/staging/shcp-staging-mail.php:/var/www/html/wp-content/mu-plugins/shcp-staging-mail.php:ro
+      # Theme + mail catcher come from git: html/wp-content/themes/shcp-child is a symlink into repo/
+      # (see update.sh), so the repo must be mounted at the same absolute path Caddy sees.
+      - ./repo:/opt/shcp-staging/repo:ro
 
   # Catches every mail WordPress sends (Contact Form 7), nothing leaves the server.
   mailpit:
@@ -81,7 +81,7 @@ services:
     volumes:
       - ./html:/var/www/html
       - ./php.ini:/usr/local/etc/php/conf.d/zz-shcp.ini:ro
-      - ./repo/shcp-child:/var/www/html/wp-content/themes/shcp-child:ro
+      - ./repo:/opt/shcp-staging/repo:ro
 
 volumes:
   db:
