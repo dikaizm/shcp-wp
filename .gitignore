@@ -1,0 +1,14 @@
+vendor-src/
+.DS_Store
+/assets/figma/
+# Client material and generated files stay out of the public repo
+/design/
+/assets/
+elementor/build/
+elementor/media.json
+.env
+*.sql
+*.tgz
+*.zip
+__pycache__/
+*.pyc

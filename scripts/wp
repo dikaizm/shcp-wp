@@ -1,0 +1,7 @@
+#!/bin/bash
+# Run WP-CLI against the Local site schp-wp.
+# Drops Elementor logger deprecation dumps (PHP 8.5) from the output, even mid-line.
+set -o pipefail
+"$HOME/Library/Application Support/Local/bin/localwp" cli schp-wp -- "$@" | awk '
+skip { if ($0 ~ /^\)\]/) { skip = 0; sub(/^\)\]/, ""); if ($0 != "") print } ; next }
+{ i = index($0, "PHP: "); if (i && $0 ~ /\[notice/) { pre = substr($0, 1, i - 1); if (pre != "") printf "%s", pre; skip = 1; next } print }'

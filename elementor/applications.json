@@ -1,0 +1,544 @@
+{
+  "lines": [
+    {
+      "slug": "upr",
+      "name": "UPR (Unsaturated Polyester Resin)",
+      "name_id": "UPR (Unsaturated Polyester Resin)"
+    },
+    {
+      "slug": "alkyd",
+      "name": "Alkyd Resin",
+      "name_id": "Alkyd Resin"
+    }
+  ],
+  "applications": [
+    {
+      "line": "upr",
+      "title": "Marine & Boat Building",
+      "slug": "marine-boat-building",
+      "intro": "Engineered specifically for hulls, decks, and structural marine components, our Marine-Grade UPR delivers uncompromised strength and long-term protection against harsh ocean environments.",
+      "benefits": [
+        [
+          "Superior Water & Osmosis Resistance",
+          "Formulated to prevent blistering and degradation from prolonged saltwater exposure."
+        ],
+        [
+          "High Strength-to-Weight Ratio",
+          "Delivers lightweight structural integrity without sacrificing impact resistance."
+        ],
+        [
+          "UV & Weather Resistant",
+          "Maintains structural stability and finish under intense sun and weather conditions."
+        ],
+        [
+          "Excellent Wet-Out",
+          "Ensures seamless saturation with fiberglass mat and woven roving for defect-free laminates."
+        ]
+      ],
+      "spec_sections": [
+        {
+          "heading": "",
+          "text": "",
+          "tabs": [
+            {
+              "label": "",
+              "table": {
+                "name": "Marine & Boat Building – UPR",
+                "head_rows": 2,
+                "rows": [
+                  [
+                    "No",
+                    "Type",
+                    "Gel Time",
+                    "#colspan#",
+                    "Viscocity",
+                    "#colspan#"
+                  ],
+                  [
+                    "#rowspan#",
+                    "#rowspan#",
+                    "25 °C",
+                    "30 °C",
+                    "25 °C",
+                    "30 °C"
+                  ],
+                  [
+                    "1",
+                    "268 BQTN-EX",
+                    "-",
+                    "12’00’’-20’00’’",
+                    "-",
+                    "4.0 – 6.0 ps"
+                  ],
+                  [
+                    "2",
+                    "555 BQTN",
+                    "-",
+                    "15’00’’-30’00’’",
+                    "-",
+                    "5.0 – 8.0 ps"
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "id": {
+        "title": "Maritim & Pembuatan Kapal",
+        "intro": "Dirancang khusus untuk lambung, dek, dan komponen struktural kapal, UPR Marine Grade kami menghadirkan kekuatan optimal dan perlindungan jangka panjang terhadap kerasnya lingkungan laut.",
+        "benefits": [
+          [
+            "Ketahanan Unggul terhadap Air & Osmosis",
+            "Diformulasikan untuk mencegah blistering (lepuhan) dan degradasi akibat paparan air laut dalam jangka panjang."
+          ],
+          [
+            "Rasio Kekuatan-terhadap-Berat yang Tinggi",
+            "Menghasilkan struktur yang ringan namun kokoh, tanpa mengorbankan ketahanan terhadap benturan."
+          ],
+          [
+            "Tahan UV & Cuaca",
+            "Menjaga kestabilan struktur dan kualitas permukaan di bawah paparan sinar matahari terik dan cuaca ekstrem."
+          ],
+          [
+            "Wet-Out yang Sangat Baik",
+            "Memastikan resin meresap sempurna ke dalam fiberglass mat dan woven roving untuk menghasilkan laminat yang bebas cacat."
+          ]
+        ],
+        "table_head": [
+          [
+            "No",
+            "Tipe",
+            "Waktu Gel (Gel Time)",
+            "#colspan#",
+            "Viskositas",
+            "#colspan#"
+          ]
+        ]
+      }
+    },
+    {
+      "line": "upr",
+      "title": "Pool & Water Recreation",
+      "slug": "pool-water-recreation",
+      "id": {
+        "title": "Kolam Renang & Wahana Air"
+      }
+    },
+    {
+      "line": "upr",
+      "title": "Automotive & Transportation",
+      "slug": "automotive-transportation",
+      "id": {
+        "title": "Otomotif & Transportasi"
+      }
+    },
+    {
+      "line": "upr",
+      "title": "Buttons & Decorative Accessories",
+      "slug": "buttons-decorative-accessories",
+      "id": {
+        "title": "Kancing & Aksesori Dekoratif"
+      }
+    },
+    {
+      "line": "upr",
+      "title": "Sanitary Ware & Bathroom",
+      "slug": "sanitary-ware-bathroom",
+      "id": {
+        "title": "Perlengkapan Sanitasi & Kamar Mandi"
+      }
+    },
+    {
+      "line": "upr",
+      "title": "IPAL & Wastewater Treatment",
+      "slug": "ipal-wastewater-treatment",
+      "id": {
+        "title": "IPAL (Instalasi Pengolahan Air Limbah)"
+      }
+    },
+    {
+      "line": "upr",
+      "title": "Construction & Building Materials",
+      "slug": "construction-building-materials",
+      "id": {
+        "title": "Konstruksi & Bahan Bangunan"
+      }
+    },
+    {
+      "line": "upr",
+      "title": "Furniture & Interior Design",
+      "slug": "furniture-interior-design",
+      "id": {
+        "title": "Furnitur & Desain Interior"
+      }
+    },
+    {
+      "line": "upr",
+      "title": "Industrial Infrastructure",
+      "slug": "industrial-infrastructure",
+      "id": {
+        "title": "Infrastruktur Industri"
+      }
+    },
+    {
+      "line": "upr",
+      "title": "Casting and Decorative Resin Art",
+      "slug": "casting-decorative-resin-art",
+      "id": {
+        "title": "Casting & Kerajinan Resin"
+      }
+    },
+    {
+      "line": "upr",
+      "title": "Electrical & Industrial Insulation",
+      "slug": "electrical-industrial-insulation",
+      "id": {
+        "title": "Isolasi Kelistrikan & Industri"
+      }
+    },
+    {
+      "line": "alkyd",
+      "title": "Decorative Wood & Steel Coating",
+      "slug": "decorative-wood-steel-coating",
+      "intro": "Ideal for solvent-based coatings on wood and steel, these resins ensure excellent application, smooth film, and durable protection. They offer good brushability, flow, and leveling for a glossy, uniform finish. Nicekyd Long and Medium oils are perfect for decorative enamel applications like wooden furniture, doors, window frames, and metal gates.",
+      "spec_sections": [
+        {
+          "heading": "Brushability & Application Ease",
+          "text": "Designed to support smooth application and consistent film formation, helping applicators achieve an even finish on decorative wood and steel surfaces.",
+          "tabs": [
+            {
+              "label": "Long Oil Alkyd",
+              "table": {
+                "name": "Decorative – Brushability – Long Oil",
+                "head_rows": 1,
+                "rows": [
+                  [
+                    "No",
+                    "Product",
+                    "Properties",
+                    "Oil Type",
+                    "Oil Length",
+                    "Viscosity",
+                    "Non-volatile",
+                    "Acid Value",
+                    "Color"
+                  ],
+                  [
+                    "1",
+                    "Nicekyd L310A",
+                    "Good durability, color fastness, film built, flow and brush-ability",
+                    "Soyabean Oil",
+                    "65",
+                    "Z2 - Z4",
+                    "70 ± 1",
+                    "max. 8",
+                    "max. 5"
+                  ],
+                  [
+                    "2",
+                    "L310EHV-70",
+                    "Good durability, flow, film built, brush-ability and color fastness",
+                    "Soyabean Oil",
+                    "65",
+                    "Z4 - Z6",
+                    "70 ± 1",
+                    "max. 8",
+                    "max. 5"
+                  ],
+                  [
+                    "3",
+                    "L310EHV-70M",
+                    "High viscosity, good gloss, durability, flow, film built, brush-ability and color fastness",
+                    "Soyabean Oil",
+                    "60",
+                    "Z7 - Z9",
+                    "70 ± 1",
+                    "max. 8",
+                    "max. 5"
+                  ],
+                  [
+                    "4",
+                    "Nicekyd L330",
+                    "Fast drying, good flow, body, whiteness and gloss retention",
+                    "Soybean Fatty Acid",
+                    "62",
+                    "Z5 - Z7",
+                    "70 ± 1",
+                    "max. 8",
+                    "max. 5"
+                  ]
+                ]
+              }
+            },
+            {
+              "label": "Medium Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Short Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Modified Alkyd",
+              "table": null
+            },
+            {
+              "label": "Amino Resin",
+              "table": null
+            }
+          ]
+        },
+        {
+          "heading": "Flow, Leveling & Film Build",
+          "text": "Suitable for formulations targeting smooth surface appearance, good leveling and adequate film build. Higher-viscosity grades can be evaluated when greater body and film thickness are required.",
+          "tabs": [
+            {
+              "label": "Long Oil Alkyd",
+              "table": {
+                "name": "Decorative – Flow & Leveling – Long Oil",
+                "head_rows": 1,
+                "rows": [
+                  [
+                    "No",
+                    "Product",
+                    "Properties",
+                    "Oil Type",
+                    "Oil Length",
+                    "Viscosity",
+                    "Non-volatile",
+                    "Acid Value",
+                    "Color"
+                  ],
+                  [
+                    "1",
+                    "Nicekyd L310A",
+                    "Good durability, color fastness, film built, flow and brush-ability",
+                    "Soyabean Oil",
+                    "65",
+                    "Z2 - Z4",
+                    "70 ± 1",
+                    "max. 8",
+                    "max. 5"
+                  ],
+                  [
+                    "2",
+                    "L310EHV-70",
+                    "Good durability, flow, film built, brush-ability and color fastness",
+                    "Soyabean Oil",
+                    "65",
+                    "Z4 - Z6",
+                    "70 ± 1",
+                    "max. 8",
+                    "max. 5"
+                  ],
+                  [
+                    "3",
+                    "L310EHV-70M",
+                    "High viscosity, good gloss, durability, flow, film built, brush-ability and color fastness",
+                    "Soyabean Oil",
+                    "60",
+                    "Z7 - Z9",
+                    "70 ± 1",
+                    "max. 8",
+                    "max. 5"
+                  ],
+                  [
+                    "4",
+                    "L310EHV-80",
+                    "High viscosity, good gloss, durability, flow, film built, brush-ability and color fastness",
+                    "Soyabean Oil",
+                    "60",
+                    "Z7 - Z9 (70%)",
+                    "80 ± 1",
+                    "max. 8",
+                    "max. 5"
+                  ],
+                  [
+                    "5",
+                    "Nicekyd L340",
+                    "High built, good durability, flow and body",
+                    "Soyabean Oil",
+                    "63",
+                    "V - Y",
+                    "55 ± 1",
+                    "max. 5",
+                    "max. 5"
+                  ]
+                ]
+              }
+            },
+            {
+              "label": "Medium Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Short Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Modified Alkyd",
+              "table": null
+            },
+            {
+              "label": "Amino Resin",
+              "table": null
+            }
+          ]
+        },
+        {
+          "heading": "Gloss, Color Retention, Durability & Water Resistance",
+          "text": "",
+          "tabs": [
+            {
+              "label": "Long Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Medium Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Short Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Modified Alkyd",
+              "table": null
+            },
+            {
+              "label": "Amino Resin",
+              "table": null
+            }
+          ]
+        },
+        {
+          "heading": "Fast-Drying Enamel",
+          "text": "",
+          "tabs": [
+            {
+              "label": "Long Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Medium Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Short Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Modified Alkyd",
+              "table": null
+            },
+            {
+              "label": "Amino Resin",
+              "table": null
+            }
+          ]
+        },
+        {
+          "heading": "White & Light-Colored Enamel",
+          "text": "",
+          "tabs": [
+            {
+              "label": "Long Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Medium Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Short Oil Alkyd",
+              "table": null
+            },
+            {
+              "label": "Modified Alkyd",
+              "table": null
+            },
+            {
+              "label": "Amino Resin",
+              "table": null
+            }
+          ]
+        }
+      ],
+      "id": {
+        "title": "Cat Dekoratif Kayu & Besi",
+        "intro": "Untuk cat berbasis pelarut pada kayu dan besi, resin ini mudah diaplikasikan, menghasilkan film yang halus, dan memberikan perlindungan tahan lama. Mudah dikuas dengan daya alir dan perataan yang baik untuk hasil akhir mengilap dan merata. Nicekyd Long Oil dan Medium Oil sesuai untuk enamel dekoratif pada furnitur, pintu, kusen, dan pagar besi.",
+        "sections": [
+          {
+            "heading": "Mudah Dikuas & Mudah Diaplikasikan",
+            "text": "Dirancang untuk mendukung aplikasi yang lancar dan pembentukan film yang konsisten, sehingga aplikator dapat memperoleh hasil akhir yang merata pada permukaan kayu dan besi dekoratif."
+          },
+          {
+            "heading": "Daya Alir, Perataan & Film Build",
+            "text": "Sesuai untuk formulasi yang mengutamakan tampilan permukaan yang halus, perataan yang baik, dan film build yang memadai. Grade dengan viskositas lebih tinggi dapat dipertimbangkan apabila dibutuhkan body dan ketebalan film yang lebih besar."
+          },
+          {
+            "heading": "Kilap, Ketahanan Warna, Daya Tahan & Ketahanan terhadap Air",
+            "text": ""
+          },
+          {
+            "heading": "Enamel Cepat Kering",
+            "text": ""
+          },
+          {
+            "heading": "Enamel Putih & Warna Terang",
+            "text": ""
+          }
+        ],
+        "properties": {
+          "Nicekyd L310A": "Daya tahan, ketahanan warna, film build, dan daya alir yang baik, serta mudah dikuas",
+          "L310EHV-70": "Daya tahan, daya alir, film build, dan ketahanan warna yang baik, serta mudah dikuas",
+          "L310EHV-70M": "Viskositas tinggi, dengan kilap, daya tahan, daya alir, film build, dan ketahanan warna yang baik, serta mudah dikuas",
+          "L310EHV-80": "Viskositas tinggi, dengan kilap, daya tahan, daya alir, film build, dan ketahanan warna yang baik, serta mudah dikuas",
+          "Nicekyd L340": "Film build tinggi, dengan daya tahan, daya alir, dan body yang baik",
+          "Nicekyd L330": "Cepat kering, dengan daya alir, body, keputihan, dan retensi kilap yang baik"
+        }
+      }
+    },
+    {
+      "line": "alkyd",
+      "title": "Anti Rust Primer",
+      "slug": "anti-rust-primer",
+      "id": {
+        "title": "Cat Dasar Anti Karat"
+      }
+    },
+    {
+      "line": "alkyd",
+      "title": "Marine Paint",
+      "slug": "marine-paint",
+      "id": {
+        "title": "Cat Kapal"
+      }
+    },
+    {
+      "line": "alkyd",
+      "title": "Wood Finishes",
+      "slug": "wood-finishes",
+      "id": {
+        "title": "Finishing Kayu"
+      }
+    },
+    {
+      "line": "alkyd",
+      "title": "Industrial Metal",
+      "slug": "industrial-metal",
+      "id": {
+        "title": "Cat Logam Industri"
+      }
+    },
+    {
+      "line": "alkyd",
+      "title": "Aerosol Spray Paint",
+      "slug": "aerosol-spray-paint",
+      "id": {
+        "title": "Cat Semprot Aerosol"
+      }
+    }
+  ]
+}

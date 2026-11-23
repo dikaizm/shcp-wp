@@ -1,0 +1,82 @@
+# SHCP client preview. Hard RAM budget ~512 MB (server is shared with the investment-agent stack).
+name: shcp-staging
+
+services:
+  db:
+    image: mariadb:11.4
+    restart: unless-stopped
+    mem_limit: 160m
+    environment:
+      MARIADB_DATABASE: shcp
+      MARIADB_USER: shcp
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    command:
+      - --innodb-buffer-pool-size=48M
+      - --innodb-log-file-size=16M
+      - --max-connections=25
+      - --performance-schema=OFF
+      - --key-buffer-size=8M
+      - --tmp-table-size=16M
+      - --max-heap-table-size=16M
+      - --table-open-cache=200
+      - --skip-name-resolve
+    volumes:
+      - db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  wp:
+    image: wordpress:php8.4-fpm
+    restart: unless-stopped
+    mem_limit: 300m
+    depends_on:
+      db: { condition: service_healthy }
+    ports:
+      - "127.0.0.1:9081:9000"   # FastCGI for the host's Caddy
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: shcp
+      WORDPRESS_DB_USER: shcp
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_TABLE_PREFIX: wp_
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME', 'https://shcp-staging.stelarlab.co');
+        define('WP_SITEURL', 'https://shcp-staging.stelarlab.co');
+        define('DISALLOW_FILE_EDIT', true);
+        define('WP_AUTO_UPDATE_CORE', false);
+        define('WP_MEMORY_LIMIT', '256M');
+    volumes:
+      - ./html:/var/www/html
+      - ./php.ini:/usr/local/etc/php/conf.d/zz-shcp.ini:ro
+      - ./fpm.conf:/usr/local/etc/php-fpm.d/zz-shcp.conf:ro
+      # Theme + mail catcher come from git (repo/), so `git pull` updates the site
+      - ./repo/shcp-child:/var/www/html/wp-content/themes/shcp-child:ro
+      - ./repo/deploy/staging/shcp-staging-mail.php:/var/www/html/wp-content/mu-plugins/shcp-staging-mail.php:ro
+
+  # Catches every mail WordPress sends (Contact Form 7), nothing leaves the server.
+  mailpit:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    mem_limit: 48m
+    ports:
+      - "127.0.0.1:8025:8025"   # inbox UI, reach with: ssh -L 8025:127.0.0.1:8025 stelar-server-02
+
+  cli:
+    image: wordpress:cli
+    profiles: ["tools"]
+    user: "33:33"
+    mem_limit: 256m
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      WORDPRESS_DB_HOST: db
+    volumes:
+      - ./html:/var/www/html
+      - ./php.ini:/usr/local/etc/php/conf.d/zz-shcp.ini:ro
+
+volumes:
+  db:
