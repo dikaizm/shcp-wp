@@ -74,9 +74,14 @@ services:
       db: { condition: service_healthy }
     environment:
       WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: shcp
+      WORDPRESS_DB_USER: shcp
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_TABLE_PREFIX: wp_
     volumes:
       - ./html:/var/www/html
       - ./php.ini:/usr/local/etc/php/conf.d/zz-shcp.ini:ro
+      - ./repo/shcp-child:/var/www/html/wp-content/themes/shcp-child:ro
 
 volumes:
   db:
