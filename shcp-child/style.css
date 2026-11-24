@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 2.0.1
+Version: 2.0.2
 Text Domain: shcp
 */
 
@@ -187,13 +187,8 @@ html { scroll-padding-top: 120px; }
 /* ---------- About ---------- */
 .shcp-motto { margin: 0; text-align: right; font: 700 48px/56px Poppins, sans-serif; letter-spacing: .5px; color: #fff; }
 .shcp-motto span { background: linear-gradient(180deg, #8fd3a5 0%, #fff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.shcp-milestones { position: relative; display: flex; gap: 80px; overflow-x: auto; padding-bottom: 28px; color: #fff; }
-/* Custom scrollbar: slim white thumb on a faint track, green on hover; inset so it lines up with the content column */
-.shcp-milestones::-webkit-scrollbar { height: 6px; }
-.shcp-milestones::-webkit-scrollbar-track { margin-right: max(40px, calc((100vw - 1216px) / 2 - 8px)); background: rgba(255, 255, 255, .22); border-radius: 3px; }
-.shcp-milestones::-webkit-scrollbar-thumb { background: #fff; border-radius: 3px; }
-.shcp-milestones::-webkit-scrollbar-thumb:hover { background: var(--shcp-green); }
-@supports not selector(::-webkit-scrollbar) { .shcp-milestones { scrollbar-width: thin; scrollbar-color: #fff rgba(255, 255, 255, .22); } } /* Firefox */
+.shcp-milestones { position: relative; display: flex; gap: 80px; overflow-x: auto; padding-bottom: 8px; color: #fff; scrollbar-width: none; }
+.shcp-milestones::-webkit-scrollbar { display: none; } /* client decision: no visible scrollbar (swipe / trackpad still scroll) */
 .shcp-milestones::before { content: ""; position: absolute; top: 18px; left: 33px; width: calc(400px * 5); height: 3px; background: #fff; }
 .shcp-milestones > div { flex: 0 0 320px; position: relative; }
 .shcp-milestones > div::before { content: ""; display: block; width: 40px; height: 40px; border-radius: 50%; background: #fff; margin-bottom: 40px; }
@@ -250,13 +245,8 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 .shcp-spec-tabs button:hover, .shcp-spec-tabs button:focus { background: none; color: var(--shcp-green); }
 .shcp-spec-tabs button[aria-selected="true"] { border-color: var(--shcp-green); }
 .shcp-spec-tabs button:disabled { opacity: .25; cursor: default; }
-.shcp-spec-panel { overflow-x: auto; padding-bottom: 14px; }
-/* Same custom scrollbar as the milestone timeline, in navy for white backgrounds */
-.shcp-spec-panel::-webkit-scrollbar { height: 6px; }
-.shcp-spec-panel::-webkit-scrollbar-track { background: rgba(28, 55, 100, .12); border-radius: 3px; }
-.shcp-spec-panel::-webkit-scrollbar-thumb { background: var(--shcp-navy); border-radius: 3px; }
-.shcp-spec-panel::-webkit-scrollbar-thumb:hover { background: var(--shcp-green); }
-@supports not selector(::-webkit-scrollbar) { .shcp-spec-panel { scrollbar-width: thin; scrollbar-color: var(--shcp-navy) rgba(28, 55, 100, .12); } } /* Firefox */
+.shcp-spec-panel { overflow-x: auto; scrollbar-width: none; }
+.shcp-spec-panel::-webkit-scrollbar { display: none; } /* client decision: no visible scrollbar */
 .shcp-spec-panel .tablepress { width: 100%; margin: 0; border-collapse: collapse; color: var(--shcp-navy); font-size: 16px; }
 .shcp-spec-panel .tablepress :is(th, td) { border: 1px solid var(--shcp-line); padding: 10px 12px; text-align: center; vertical-align: top; background: #fff; }
 .shcp-spec-panel .tablepress thead th { background: var(--shcp-navy); color: #fff; font-weight: 500; font-size: 18px; padding: 8px 16px; vertical-align: middle; }
@@ -394,8 +384,7 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 	/* About */
 	.shcp-vision-col { display: contents !important; }
 	.shcp-vision-img { order: 3 !important; }
-	.shcp-milestones { gap: 24px; padding-bottom: 0; scrollbar-width: none; }
-	.shcp-milestones::-webkit-scrollbar { display: none; }
+	.shcp-milestones { gap: 24px; padding-bottom: 0; }
 	.shcp-milestones::before { width: calc(264px * 5); top: 10.5px; left: 18px; }
 	.shcp-milestones > div { flex-basis: 240px; }
 	.shcp-milestones > div::before { width: 24px; height: 24px; margin-bottom: 24px; }
