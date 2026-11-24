@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 1.9.2
+Version: 1.9.7
 Text Domain: shcp
 */
 
@@ -147,6 +147,9 @@ html { scroll-padding-top: 120px; }
 
 /* Fixed-width containers (Figma desktop px) never exceed the screen: tablet sizes */
 .e-con { max-width: 100%; }
+
+/* Home "Solutions" photo: Figma shows it spanning the 1440 frame, so it fills the screen up to 1440 and then stays 1440 wide, centred on the gradient */
+.elementor .e-con > .shcp-solutions-img.elementor-widget { width: 100%; max-width: 1440px !important; margin-left: auto !important; margin-right: auto !important; } /* beats Elementor's widget max-width: 100% */
 
 /* Edge-to-edge images */
 /* Spacing between widgets comes from container gaps, not paragraph margins */
