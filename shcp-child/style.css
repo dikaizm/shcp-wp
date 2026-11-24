@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 1.7.5
+Version: 1.7.9
 Text Domain: shcp
 */
 
@@ -67,15 +67,14 @@ html { scroll-padding-top: 120px; }
 
 /* ---------- Hero glass card + cut-out person ---------- */
 .shcp-glass, .e-con.shcp-glass { border: 2px solid #fff; border-radius: 16px; background: linear-gradient(91.5deg, #fff 34.134%, rgba(255, 255, 255, .5) 92.195%); }
-.shcp-glass--detail { background: linear-gradient(129.8deg, #fff 49%, rgba(255, 255, 255, .5) 116%); }
-.shcp-glass--down { background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, .5) 115%); }
+.e-con.shcp-glass--detail { background: linear-gradient(129.8deg, #fff 49%, rgba(255, 255, 255, .5) 116%); }
+.e-con.shcp-glass--down { background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, .5) 115%); }
 .shcp-hero { position: relative; overflow: hidden; }
 .shcp-glass--top { position: relative; z-index: 2; }
 .shcp-hero-person img { width: 100%; height: auto; display: block; }
 /* Laptop widths: cut-outs scale with the screen like the 1440 design (658/571/880 of 1440) */
 .e-con.shcp-hero { overflow: hidden; --overflow: hidden; }
 @media (min-width: 1025px) and (max-width: 1440px) {
-	.elementor-widget.shcp-hp-880 { width: 61.11vw !important; }
 }
 /* Hero cut-out attached to the card's right edge (card + person are one flex row).
    Sizes are Figma px at 1440, scaled with the viewport below that. */
@@ -101,7 +100,11 @@ html { scroll-padding-top: 120px; }
 }
 /* Contact: 880x640 photo box (cropped), card layered above it */
 .shcp-hero-person--contact { z-index: 1 !important; }
-.shcp-hero-person--contact img { height: auto !important; aspect-ratio: 880 / 640; object-fit: cover; }
+/* Figma: photo at 1.38x (1025x731), 197px past the right edge and 43px below the hero; scaled below 1440 */
+@media (min-width: 1025px) {
+	.shcp-hero-person--contact.elementor-widget { left: auto !important; top: auto !important; right: calc(-1 * min(197px, 13.68vw)) !important; bottom: calc(-1 * min(43px, 2.99vw)) !important; width: min(1025px, 71.18vw) !important; }
+	.shcp-hero-person--contact img { height: auto !important; aspect-ratio: auto; }
+}
 .shcp-hero-front { position: relative; z-index: 2 !important; }
 
 /* Homepage hero carousel ([shcp_hero_slider]) */
