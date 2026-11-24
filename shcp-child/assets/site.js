@@ -63,6 +63,9 @@ document.querySelectorAll('.shcp-slider').forEach(function (slider) {
 	if (slides.length < 2) return;
 
 	function go(n) {
+		// the hero is as tall as the active slide: ease between heights instead of jumping
+		var from = slider.offsetHeight;
+		slider.style.height = from + 'px';
 		slides[current].classList.remove('is-active');
 		slides[current].setAttribute('aria-hidden', 'true');
 		dots[current].removeAttribute('aria-current');
@@ -70,6 +73,9 @@ document.querySelectorAll('.shcp-slider').forEach(function (slider) {
 		slides[current].classList.add('is-active');
 		slides[current].removeAttribute('aria-hidden');
 		dots[current].setAttribute('aria-current', 'true');
+		var to = slides[current].offsetHeight;
+		requestAnimationFrame(function () { slider.style.height = to + 'px'; });
+		setTimeout(function () { slider.style.height = ''; }, 600);
 	}
 	function stop() { clearInterval(timer); }
 	function play() {

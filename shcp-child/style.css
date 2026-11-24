@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 1.8.4
+Version: 1.8.5
 Text Domain: shcp
 */
 
@@ -108,9 +108,11 @@ html { scroll-padding-top: 120px; }
 .shcp-hero-front { position: relative; z-index: 2 !important; }
 
 /* Homepage hero carousel ([shcp_hero_slider]) */
-.shcp-slider { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); overflow: hidden; background: var(--shcp-navy); }
-.shcp-slide { display: flex; flex-direction: column; grid-area: 1 / 1; position: relative; min-height: 720px; opacity: 0; visibility: hidden; transition: opacity .8s, visibility .8s; }
-.shcp-slide.is-active { opacity: 1; visibility: visible; }
+.shcp-slider { position: relative; display: block; overflow: hidden; background: var(--shcp-navy); }
+/* Only the active slide is in flow, so the hero is as tall as that slide (like the other heroes); the others fade out on top of it. */
+.shcp-slide { display: flex; flex-direction: column; position: absolute; inset: 0; min-height: 720px; opacity: 0; visibility: hidden; transition: opacity .8s, visibility .8s; }
+.shcp-slide.is-active { position: relative; opacity: 1; visibility: visible; }
+@media (prefers-reduced-motion: no-preference) { .shcp-slider { transition: height .5s ease; } }
 .shcp-slide__bg { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; }
 .shcp-slide::before { content: ""; position: absolute; inset: 0; z-index: 1; background: rgba(56, 56, 56, .6); mix-blend-mode: multiply; }
 .shcp-slide__inner { flex: 1 1 auto; width: 100%; position: relative; z-index: 2; display: flex; box-sizing: border-box; min-height: 720px; max-width: 1280px; margin: 0 auto; padding: 100px 16px 0; }
