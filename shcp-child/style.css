@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 1.8.6
+Version: 1.8.8
 Text Domain: shcp
 */
 
@@ -89,6 +89,13 @@ html { scroll-padding-top: 120px; }
 		width: min(calc(var(--pw) * 1px), calc(var(--pw) / 14.4 * 1vw)) !important;
 		margin: 0 0 0 calc(-1 * min(calc(var(--ov) * 1px), calc(var(--ov) / 14.4 * 1vw))) !important;
 	}
+}
+/* Footer up to the 1366 laptop breakpoint: logos on one line, menu below them, left-aligned with the logos/address */
+@media (max-width: 1366px) {
+	.shcp-foot-top { flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; }
+	.shcp-footer-logos, .shcp-footer-logos > .e-con-inner { flex-wrap: nowrap !important; }
+	.shcp-footer .shcp-menu ul { justify-content: flex-start; }
+	.shcp-footer .shcp-menu li:first-child a { padding-left: 0; }
 }
 /* Laptop widths: header nav fits beside the logo */
 @media (min-width: 1025px) and (max-width: 1280px) {

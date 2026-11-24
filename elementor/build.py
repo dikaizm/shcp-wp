@@ -305,7 +305,7 @@ def footer():
     logos = con(image("logo-shcp", width=124), image("logo-nicekyd", width=160), image("logo-nicemino", width=185),
                 direction="row", gap=40, align="center", mobile_dir="row", wrap=True, classes="shcp-footer-logos", **gm(16))
     top = con(logos, con(shortcode('[shcp_menu location="shcp-footer"]'), classes="shcp-hide-mobile"), direction="row",
-              justify="space-between", align="center", gap=40)
+              justify="space-between", align="center", gap=40, classes="shcp-foot-top")
     address = text("<p><span style='font-size:18px;line-height:26px'>Singapore Highpolymer Chemical Products Pte Ltd</span></p>"
                    "<p>21 Tanjong Penjuru,<br>Jurong Industrial Estate, Singapore 609022<br>"
                    "Email: <a href='mailto:enquiry@shcp.com.sg'>enquiry@shcp.com.sg</a><br>"
