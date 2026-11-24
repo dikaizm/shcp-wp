@@ -130,16 +130,22 @@ def con(*children, direction="column", boxed=False, full=False, width=None, gap=
         bx = box(*pad)
         s["padding"] = box(bx["top"], 112, bx["bottom"], 112)
         s.setdefault("padding_tablet", box(bx["top"], 40, bx["bottom"], 40))
-        classes = " ".join(filter(None, [classes, "shcp-gl shcp-gr"]))
+        classes = " ".join(filter(None, [classes, "shcp-box"]))
     if full and pad is not None and box(*pad)["left"] == "16":
         # Tablet (768-1024) side margin is 40px on every page
         bx = box(*pad)
         s.setdefault("padding_tablet", box(bx["top"], 40, bx["bottom"], 40))
     if full and pad is not None:
-        # Wider than 1440: 112px gutters grow so content stays in the centred 1216 column (style.css)
         bx = box(*pad)
-        classes = " ".join(filter(None, [classes, "shcp-gl" if bx["left"] == "112" else "",
-                                         "shcp-gr" if bx["right"] == "112" else ""]))
+        if bx["left"] == "112" and bx["right"] == "112":
+            # Symmetric 112px sections: fixed gutter + an inner container capped at 1216px and centred
+            s["content_width"] = "boxed"
+            s["boxed_width"] = px(BOXED)
+            classes = " ".join(filter(None, [classes, "shcp-box"]))
+        else:
+            # Flush layouts (full-bleed photo on one side): their text edge follows the centred 1216 column (style.css)
+            classes = " ".join(filter(None, [classes, "shcp-gl" if bx["left"] == "112" else "",
+                                             "shcp-gr" if bx["right"] == "112" else ""]))
     if classes:
         s["css_classes"] = classes
     s.update(extra)

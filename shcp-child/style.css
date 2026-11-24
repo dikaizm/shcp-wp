@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 1.8.8
+Version: 1.9.1
 Text Domain: shcp
 */
 
@@ -141,9 +141,8 @@ html { scroll-padding-top: 120px; }
 	.shcp-gr { padding-right: max(112px, calc((100% - 1216px) / 2)) !important; }
 	.shcp-gl-vw { padding-left: max(112px, calc((100vw - 1216px) / 2 - 8px)) !important; } /* half-width columns; 8px = half the scrollbar */
 	/* Header and hero cards use Figma's 1244 frame: 98px edges at 1440 */
-	.shcp-fx { padding-left: max(98px, calc((100% - 1244px) / 2)) !important; padding-right: max(98px, calc((100% - 1244px) / 2)) !important; }
-	.shcp-fx > .e-con-inner { max-width: none !important; }
-	.shcp-slide__inner { max-width: none; padding: 100px max(98px, calc((100% - 1244px) / 2)) 0; }
+	.shcp-fx { padding-left: 98px !important; padding-right: 98px !important; } /* inner container is capped at 1244px (Elementor boxed width) and centred */
+	.shcp-slide__inner { max-width: 1440px; padding: 100px 98px 0; } /* 1440 - 2x98 = Figma's 1244 frame, centred */
 }
 
 /* Fixed-width containers (Figma desktop px) never exceed the screen: tablet sizes */
@@ -258,6 +257,7 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
 	/* Tablet: every section, the header and the footer use a 40px side margin */
+	.shcp-box { padding-left: 40px !important; padding-right: 40px !important; }
 	.shcp-gl, .shcp-gl-vw { padding-left: 40px !important; }
 	.shcp-gr { padding-right: 40px !important; }
 	.shcp-header.shcp-fx { padding-left: 40px !important; padding-right: 40px !important; }
@@ -366,8 +366,9 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 	.shcp-stat img { width: 48px; height: 48px; }
 	.shcp-hide-mobile { display: none !important; }
 	.shcp-cta > .shcp-cta-right { position: static; width: 100%; }
-	.shcp-cta-img { width: 100% !important; }
-	.shcp-cta-img img { width: 100%; height: 300px; object-fit: cover; object-position: center top; }
+	.shcp-cta-img { width: 100% !important; height: 300px; overflow: hidden; }
+	/* Figma mobile: photo 450px wide (women ~291px), 25px from the left and bleeding 84px off the right edge, top 9px above the 300px box */
+	.elementor .shcp-cta .shcp-cta-img img { display: block; width: 450px; max-width: none; height: auto; margin: -9px -84px 0 auto; } /* beats Elementor's .elementor img { max-width: 100% } */
 
 	/* Home solutions: 286 tall, person framed as in Figma */
 	.shcp-solutions-img { overflow: hidden; }
