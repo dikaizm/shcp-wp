@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 2.0.0
+Version: 2.0.1
 Text Domain: shcp
 */
 
@@ -250,7 +250,13 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 .shcp-spec-tabs button:hover, .shcp-spec-tabs button:focus { background: none; color: var(--shcp-green); }
 .shcp-spec-tabs button[aria-selected="true"] { border-color: var(--shcp-green); }
 .shcp-spec-tabs button:disabled { opacity: .25; cursor: default; }
-.shcp-spec-panel { overflow-x: auto; }
+.shcp-spec-panel { overflow-x: auto; padding-bottom: 14px; }
+/* Same custom scrollbar as the milestone timeline, in navy for white backgrounds */
+.shcp-spec-panel::-webkit-scrollbar { height: 6px; }
+.shcp-spec-panel::-webkit-scrollbar-track { background: rgba(28, 55, 100, .12); border-radius: 3px; }
+.shcp-spec-panel::-webkit-scrollbar-thumb { background: var(--shcp-navy); border-radius: 3px; }
+.shcp-spec-panel::-webkit-scrollbar-thumb:hover { background: var(--shcp-green); }
+@supports not selector(::-webkit-scrollbar) { .shcp-spec-panel { scrollbar-width: thin; scrollbar-color: var(--shcp-navy) rgba(28, 55, 100, .12); } } /* Firefox */
 .shcp-spec-panel .tablepress { width: 100%; margin: 0; border-collapse: collapse; color: var(--shcp-navy); font-size: 16px; }
 .shcp-spec-panel .tablepress :is(th, td) { border: 1px solid var(--shcp-line); padding: 10px 12px; text-align: center; vertical-align: top; background: #fff; }
 .shcp-spec-panel .tablepress thead th { background: var(--shcp-navy); color: #fff; font-weight: 500; font-size: 18px; padding: 8px 16px; vertical-align: middle; }
