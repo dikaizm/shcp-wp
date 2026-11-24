@@ -131,6 +131,10 @@ def con(*children, direction="column", boxed=False, full=False, width=None, gap=
         s["padding"] = box(bx["top"], 112, bx["bottom"], 112)
         s.setdefault("padding_tablet", box(bx["top"], 40, bx["bottom"], 40))
         classes = " ".join(filter(None, [classes, "shcp-gl shcp-gr"]))
+    if full and pad is not None and box(*pad)["left"] == "16":
+        # Tablet (768-1024) side margin is 40px on every page
+        bx = box(*pad)
+        s.setdefault("padding_tablet", box(bx["top"], 40, bx["bottom"], 40))
     if full and pad is not None:
         # Wider than 1440: 112px gutters grow so content stays in the centred 1216 column (style.css)
         bx = box(*pad)
@@ -248,10 +252,10 @@ def hero(lang, bg_name, person, title, body, cta, cta_link, height=720, card_w=9
     ov = 98 + card_w - person_x             # overlap with the card at 1440
     card = con(heading(title, 48, tag_="h1"), text(body), button(cta, cta_link, icon="fas fa-chevron-down", small=True),
                width=card_w, gap=32, pad=(40, pr, 40, 40), classes=f"shcp-glass shcp-pr-{pr}",
-               padding_tablet=box(40, 40, 80, 40), **pm(24, 24, 80, 24), **gm(24))
+               width_tablet=px(card_w), **pm(24, 24, 80, 24), **gm(24))
     people = image(person, _css_classes=f"shcp-hero-person shcp-attached shcp-hp-{person_w} shcp-ov-{ov}")
     wrap = con(card, people, direction="row", boxed=FRAME, pad=(0, 0, 0, 0), min_h=height, classes="shcp-hero-wrap",
-               padding_tablet=box(60, 0, 0, 0), **pm(0))
+               flex_direction_tablet="row", **pm(0))
     return con(wrap, full=True, min_h=height, bg=photo(bg_name), classes="shcp-hero shcp-fx", **pm(63, 15, 0, 15))
 
 

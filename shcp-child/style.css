@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 1.7.9
+Version: 1.8.4
 Text Domain: shcp
 */
 
@@ -81,7 +81,7 @@ html { scroll-padding-top: 120px; }
 .shcp-hp-658 { --pw: 658; } .shcp-hp-571 { --pw: 571; } .shcp-hp-600 { --pw: 600; }
 .shcp-ov-358 { --ov: 358; } .shcp-ov-325 { --ov: 325; } .shcp-ov-319 { --ov: 319; }
 .shcp-pr-308 { --pr: 308; } .shcp-pr-228 { --pr: 228; } .shcp-pr-280 { --pr: 280; }
-@media (min-width: 1025px) {
+@media (min-width: 768px) {
 	.shcp-hero-wrap > .e-con-inner > .shcp-glass { flex: 0 1 auto; min-width: 0; align-self: flex-start; margin-top: 100px; } /* margin, not padding: the hero stays exactly Figma's height */
 	.shcp-hero-wrap > .e-con-inner > .shcp-glass[class*="shcp-pr-"] { padding-right: min(calc(var(--pr) * 1px), calc(var(--pr) / 14.4 * 1vw)) !important; }
 	.shcp-hero-wrap .shcp-hero-person.shcp-attached {
@@ -109,11 +109,11 @@ html { scroll-padding-top: 120px; }
 
 /* Homepage hero carousel ([shcp_hero_slider]) */
 .shcp-slider { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); overflow: hidden; background: var(--shcp-navy); }
-.shcp-slide { grid-area: 1 / 1; position: relative; min-height: 720px; opacity: 0; visibility: hidden; transition: opacity .8s, visibility .8s; }
+.shcp-slide { display: flex; flex-direction: column; grid-area: 1 / 1; position: relative; min-height: 720px; opacity: 0; visibility: hidden; transition: opacity .8s, visibility .8s; }
 .shcp-slide.is-active { opacity: 1; visibility: visible; }
 .shcp-slide__bg { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; }
 .shcp-slide::before { content: ""; position: absolute; inset: 0; z-index: 1; background: rgba(56, 56, 56, .6); mix-blend-mode: multiply; }
-.shcp-slide__inner { position: relative; z-index: 2; display: flex; box-sizing: border-box; min-height: 720px; max-width: 1280px; margin: 0 auto; padding: 100px 16px 0; }
+.shcp-slide__inner { flex: 1 1 auto; width: 100%; position: relative; z-index: 2; display: flex; box-sizing: border-box; min-height: 720px; max-width: 1280px; margin: 0 auto; padding: 100px 16px 0; }
 .shcp-slide__card { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; flex: 0 1 960px; min-width: 0; align-self: flex-start; max-width: 100%; padding: 40px min(308px, 21.39vw) 40px 40px; }
 .shcp-slide__title { margin: 0; color: var(--shcp-navy); font: 700 48px/56px Poppins, sans-serif; letter-spacing: .5px; }
 .shcp-slide__text { margin: 0; color: var(--shcp-navy); font: 500 20px/30px Poppins, sans-serif; letter-spacing: .5px; }
@@ -151,7 +151,7 @@ html { scroll-padding-top: 120px; }
 /* CTA band: photo pinned to the bottom-right corner at any width */
 @media (min-width: 1025px) {
 	/* Figma: 743x530 photo whose right 142px run past the band's edge; scaled with the screen below 1440 */
-	.shcp-cta { position: relative; overflow: hidden; }
+	.e-con.shcp-cta { position: relative; overflow: hidden; --overflow: hidden; } /* beats Elementor's own .e-con overflow */
 	.shcp-cta > .shcp-cta-right { position: absolute; right: calc(-1 * min(142px, 9.86vw)); bottom: 0; width: min(743px, 51.6vw); }
 }
 .shcp-cta-img { width: 100% !important; }
@@ -243,21 +243,21 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 	.shcp-menu a { padding: 12px; font-size: 16px; }
 	.shcp-benefits { grid-template-columns: repeat(2, 1fr); }
 	.shcp-offices { grid-template-columns: repeat(2, 1fr); }
-	/* Cut-outs stay visible: stacked under the card, attached to its right edge, fixed size */
-	.shcp-hero, .shcp-hero-wrap, .shcp-slide, .shcp-slide__inner { min-height: 0 !important; }
-	.shcp-hero-wrap > .e-con-inner > .shcp-glass { width: 100% !important; }
-	.shcp-hero-wrap .shcp-hero-person.shcp-attached { flex: none; position: relative; z-index: 3; align-self: flex-end; width: 400px !important; margin: -80px 0 0 !important; }
-	.shcp-slide__inner { flex-direction: column; }
-	.shcp-slide__card { flex: none; width: 100%; padding: 40px 40px 80px; }
-	.shcp-slide__person { align-self: flex-end; width: 400px; margin: -80px 0 0; }
 	.shcp-hero-person--contact { position: static !important; align-self: flex-end !important; width: 560px !important; margin: 0 !important; }
 	.shcp-hero-person--contact img { height: 407px !important; aspect-ratio: auto; }
 	.shcp-cta-img { width: 560px !important; max-width: 100%; margin-left: auto; }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
+	/* Tablet: every section, the header and the footer use a 40px side margin */
+	.shcp-gl, .shcp-gl-vw { padding-left: 40px !important; }
+	.shcp-gr { padding-right: 40px !important; }
+	.shcp-header.shcp-fx { padding-left: 40px !important; padding-right: 40px !important; }
 	.shcp-hero { padding: 0 40px 0 !important; }
 	.shcp-detail-hero { min-height: 0 !important; padding: 0 40px 80px !important; }
 	.shcp-detail-hero { background-size: cover !important; }
+	.shcp-hero-wrap > .e-con-inner > .shcp-glass { margin-top: 60px; }
+	.shcp-hero .shcp-glass .elementor-heading-title, .shcp-slide__title { font-size: clamp(32px, 4.4vw, 48px) !important; line-height: 1.17 !important; }
+	.shcp-hero .shcp-glass .elementor-widget-text-editor, .shcp-slide__text { font-size: 18px !important; line-height: 28px !important; }
 	.shcp-slide__inner { padding: 60px 40px 80px; }
 	.shcp-slide__inner:has(.shcp-slide__person) { padding-bottom: 0; }
 	.e-con.shcp-stat { width: calc(25% - 30px) !important; }
@@ -327,7 +327,12 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 	.shcp-hero { flex-direction: column !important; justify-content: flex-start !important; }
 	.shcp-hero .shcp-glass { width: 360px !important; max-width: 100%; margin: 0 auto; background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, .5) 100%); }
 	/* Mobile: cut-out is a fixed size (not screen-width based), in flow under the card, overlapping its bottom padding */
-	.shcp-hero-wrap .shcp-hero-person.shcp-attached { width: 355px !important; max-width: none; align-self: center; margin: -80px 0 0 !important; }
+	.shcp-hero, .shcp-hero-wrap, .shcp-slide, .shcp-slide__inner { min-height: 0 !important; }
+	.shcp-hero-wrap > .e-con-inner > .shcp-glass { width: 100% !important; }
+	.shcp-hero-wrap .shcp-hero-person.shcp-attached { flex: none; position: relative; z-index: 3; width: 355px !important; max-width: none; align-self: center; margin: -80px 0 0 !important; }
+	/* all slides share the tallest one's height: the person is pinned to the bottom, overlapping the card only when it must */
+	.shcp-slide__inner { flex-direction: column; justify-content: space-between; }
+	.shcp-slide__card { flex: none; }
 	.shcp-hero-person--contact { width: 389px !important; max-width: none; align-self: center !important; }
 	.shcp-hero-person--contact img { height: 283px !important; }
 	.shcp-glass--top { z-index: 2; }
@@ -335,7 +340,7 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 	/* Hero carousel: same layout as the other heroes */
 	.shcp-slide__inner { padding: 63px 15px 80px; }
 	.shcp-slide__inner:has(.shcp-slide__person) { padding-bottom: 0; }
-	.shcp-slide__card { width: 360px; max-width: 100%; margin: 0 auto; padding: 24px 24px 80px; gap: 24px; background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, .5) 100%); }
+	.shcp-slide__card { width: 100%; max-width: none; margin: 0; padding: 24px 24px 80px; gap: 24px; background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, .5) 100%); }
 	.shcp-slide__title { font-size: 28px; line-height: 36px; font-weight: 600; letter-spacing: 0; }
 	.shcp-slide__text { font-size: 14px; line-height: 20px; }
 	.shcp-slide .shcp-btn { width: auto; font-size: 16px; line-height: 24px; padding: 8px 12px; }
