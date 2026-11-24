@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 1.9.1
+Version: 1.9.2
 Text Domain: shcp
 */
 
@@ -135,14 +135,14 @@ html { scroll-padding-top: 120px; }
 /* Detail hero: navy left, photo on the right 880/1440 */
 .shcp-detail-hero { background-size: 61.11% 100% !important; background-position: right center !important; }
 
-/* One content edge for every section and the footer: 112px, growing past 1440 to keep the 1216 column centred */
+/* Flush layouts (full-bleed photo on one side) can't sit in a capped container: their text edge is 40px, then follows the centred 1216 column (112px at 1440) */
 @media (min-width: 1025px) {
-	.shcp-gl { padding-left: max(112px, calc((100% - 1216px) / 2)) !important; }
-	.shcp-gr { padding-right: max(112px, calc((100% - 1216px) / 2)) !important; }
-	.shcp-gl-vw { padding-left: max(112px, calc((100vw - 1216px) / 2 - 8px)) !important; } /* half-width columns; 8px = half the scrollbar */
+	.shcp-gl { padding-left: max(40px, calc((100% - 1216px) / 2)) !important; }
+	.shcp-gr { padding-right: max(40px, calc((100% - 1216px) / 2)) !important; }
+	.shcp-gl-vw { padding-left: max(40px, calc((100vw - 1216px) / 2 - 8px)) !important; } /* half-width columns; 8px = half the scrollbar */
 	/* Header and hero cards use Figma's 1244 frame: 98px edges at 1440 */
-	.shcp-fx { padding-left: 98px !important; padding-right: 98px !important; } /* inner container is capped at 1244px (Elementor boxed width) and centred */
-	.shcp-slide__inner { max-width: 1440px; padding: 100px 98px 0; } /* 1440 - 2x98 = Figma's 1244 frame, centred */
+	.shcp-fx { padding-left: 40px !important; padding-right: 40px !important; } /* inner container is capped at 1244px (Elementor boxed width) and centred: 98px at 1440 */
+	.shcp-slide__inner { max-width: 1324px; padding: 100px 40px 0; } /* 1324 - 2x40 = Figma's 1244 frame, centred */
 }
 
 /* Fixed-width containers (Figma desktop px) never exceed the screen: tablet sizes */
@@ -160,7 +160,7 @@ html { scroll-padding-top: 120px; }
 @media (min-width: 1025px) {
 	/* Figma: 743x530 photo whose right 142px run past the band's edge; scaled with the screen below 1440 */
 	.e-con.shcp-cta { position: relative; overflow: hidden; --overflow: hidden; } /* beats Elementor's own .e-con overflow */
-	.shcp-cta > .shcp-cta-right { position: absolute; right: calc(-1 * min(142px, 9.86vw)); bottom: 0; width: min(743px, 51.6vw); }
+	.shcp-cta .shcp-cta-right { position: absolute; right: calc(-1 * min(142px, 9.86vw)); bottom: 0; width: min(743px, 51.6vw); }
 }
 .shcp-cta-img { width: 100% !important; }
 .shcp-cta-img img { display: block; width: 100%; }
@@ -365,7 +365,7 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 	.shcp-stat { justify-content: flex-start; }
 	.shcp-stat img { width: 48px; height: 48px; }
 	.shcp-hide-mobile { display: none !important; }
-	.shcp-cta > .shcp-cta-right { position: static; width: 100%; }
+	.shcp-cta .shcp-cta-right { position: static; width: 100%; }
 	.shcp-cta-img { width: 100% !important; height: 300px; overflow: hidden; }
 	/* Figma mobile: photo 450px wide (women ~291px), 25px from the left and bleeding 84px off the right edge, top 9px above the 300px box */
 	.elementor .shcp-cta .shcp-cta-img img { display: block; width: 450px; max-width: none; height: auto; margin: -9px -84px 0 auto; } /* beats Elementor's .elementor img { max-width: 100% } */

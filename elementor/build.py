@@ -126,9 +126,9 @@ def con(*children, direction="column", boxed=False, full=False, width=None, gap=
         s["min_height"] = px(min_h)
         s["min_height_mobile"] = px(0)
     if boxed is True and pad is not None and box(*pad)["left"] == "16":
-        # Content sections: 112px edges on desktop like the padded sections, 40px on tablet
+        # Content sections: 40px gutters + a centred inner container capped at 1216px (112px edges at 1440)
         bx = box(*pad)
-        s["padding"] = box(bx["top"], 112, bx["bottom"], 112)
+        s["padding"] = box(bx["top"], 40, bx["bottom"], 40)
         s.setdefault("padding_tablet", box(bx["top"], 40, bx["bottom"], 40))
         classes = " ".join(filter(None, [classes, "shcp-box"]))
     if full and pad is not None and box(*pad)["left"] == "16":
@@ -138,9 +138,11 @@ def con(*children, direction="column", boxed=False, full=False, width=None, gap=
     if full and pad is not None:
         bx = box(*pad)
         if bx["left"] == "112" and bx["right"] == "112":
-            # Symmetric 112px sections: fixed gutter + an inner container capped at 1216px and centred
+            # Symmetric sections (written as 112px edges in the source): 40px gutters + an inner container
+            # capped at 1216px and centred, which is exactly 112px at 1440
             s["content_width"] = "boxed"
             s["boxed_width"] = px(BOXED)
+            s["padding"] = box(bx["top"], 40, bx["bottom"], 40)
             classes = " ".join(filter(None, [classes, "shcp-box"]))
         else:
             # Flush layouts (full-bleed photo on one side): their text edge follows the centred 1216 column (style.css)
@@ -283,10 +285,11 @@ def cta_band(lang, body=None, label=None):
                            _element_custom_width_mobile=px(100, "%")),
                    text(body or t["cta_body"], 20, WHITE), gap=16),
                button(label or t["cta_btn"], url(lang, "contact"), "white"),
-               width=800, gap=40, pad=(120, 0, 120, 112), classes="shcp-gl-vw", **pm(80, 24, 40, 24), **gm(24))
+               width=800, gap=40, pad=(120, 0, 120, 0), **pm(80, 24, 40, 24), **gm(24))
     right = con(image("cta-team", _css_classes="shcp-cta-img"), width=743, justify="flex-end", align="flex-end",
                 classes="shcp-cta-right")
-    return con(left, right, direction="row", full=True, align="stretch", bg=solid(GREEN), classes="shcp-cta", **gm(0))
+    return con(left, right, direction="row", boxed=BOXED, pad=(0, 40, 0, 40), align="stretch", bg=solid(GREEN), classes="shcp-cta",
+               **pm(0), **gm(0))
 
 
 def section_title(text_, color=NAVY, align="center"):
