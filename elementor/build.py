@@ -315,11 +315,8 @@ def footer():
                 direction="row", gap=40, align="center", mobile_dir="row", wrap=True, classes="shcp-footer-logos", **gm(16))
     top = con(logos, con(shortcode('[shcp_menu location="shcp-footer"]'), classes="shcp-hide-mobile"), direction="row",
               justify="space-between", align="center", gap=40, classes="shcp-foot-top")
-    address = text("<p><span style='font-size:18px;line-height:26px'>Singapore Highpolymer Chemical Products Pte Ltd</span></p>"
-                   "<p>21 Tanjong Penjuru,<br>Jurong Industrial Estate, Singapore 609022<br>"
-                   "Email: <a href='mailto:enquiry@shcp.com.sg'>enquiry@shcp.com.sg</a><br>"
-                   "Tel: (65) 6268 8255, Fax: (65) 6265 6855</p>", 16, GREY, m="m-foot")
-    bottom = con(con(address, width=50), con(shortcode("[shcp_t key=footer_about]"), width=360),
+    address = shortcode("[shcp_footer part=address]")  # editable in the admin: Footer (SCF options page)
+    bottom = con(con(address, width=50), con(shortcode("[shcp_footer part=about]"), width=360),
                  direction="row", justify="space-between", gap=40, **gm(40))
     return con(top, bottom, full=True, gap=120, pad=(120, 112), bg=bg_image("footer-bg"), **gm(80),
                classes="shcp-footer", **pm(80, 24))

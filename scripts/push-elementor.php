@@ -167,6 +167,18 @@ foreach ( $site['hero_slides'] as $lang => $slides ) {
 	}
 }
 
+// Footer fields: seed the built-in text only while a field is empty, so edits made in WP admin survive later pushes.
+$footer_keys = array(
+	'footer_email' => 'field_shcp_footer_email', 'footer_tel' => 'field_shcp_footer_tel', 'footer_fax' => 'field_shcp_footer_fax',
+	'footer_company_en' => 'field_shcp_footer_company_en', 'footer_address_en' => 'field_shcp_footer_address_en', 'footer_about_en' => 'field_shcp_footer_about_en',
+	'footer_company_id' => 'field_shcp_footer_company_id', 'footer_address_id' => 'field_shcp_footer_address_id', 'footer_about_id' => 'field_shcp_footer_about_id',
+);
+foreach ( shcp_footer_defaults() as $name => $default ) {
+	if ( '' === trim( (string) get_field( $name, 'option' ) ) ) {
+		update_field( $footer_keys[ $name ], $default, 'option' );
+	}
+}
+
 \ElementorPro\Plugin::instance()->modules_manager->get_modules( 'theme-builder' )->get_conditions_manager()->get_cache()->regenerate();
 update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', $groups['home']['en'] );

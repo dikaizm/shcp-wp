@@ -323,3 +323,85 @@ add_action( 'wp_head', function () {
 	}
 	echo "<script>(function(d){d.classList.add('shcp-js');setTimeout(function(){d.classList.contains('shcp-ready')||d.classList.remove('shcp-js')},4000)})(document.documentElement)</script>\n";
 }, 1 );
+
+// Footer text is editable under "Footer" in the WP admin (SCF options page). Contact details are shared;
+// company name, address and about text are written per language (the front end picks by Polylang language).
+function shcp_footer_defaults() {
+	return array(
+		'footer_email'      => 'enquiry@shcp.com.sg',
+		'footer_tel'        => '(65) 6268 8255',
+		'footer_fax'        => '(65) 6265 6855',
+		'footer_company_en' => 'Singapore Highpolymer Chemical Products Pte Ltd',
+		'footer_address_en' => "21 Tanjong Penjuru,\nJurong Industrial Estate, Singapore 609022",
+		'footer_about_en'   => 'SHCP manufactures Unsaturated Polyester and Alkyd Resins in Singapore and Indonesia, also supplies a complete range of FRP materials. SHCP has been serving industrial customers since 1974.',
+		'footer_company_id' => 'Singapore Highpolymer Chemical Products Pte Ltd',
+		'footer_address_id' => "21 Tanjong Penjuru,\nJurong Industrial Estate, Singapore 609022",
+		'footer_about_id'   => 'SHCP memproduksi Unsaturated Polyester Resin dan Alkyd Resin di Singapura dan Indonesia, serta memasok rangkaian lengkap material FRP. SHCP telah melayani pelanggan industri sejak 1974.',
+	);
+}
+
+add_action( 'acf/init', function () {
+	acf_add_options_page( array(
+		'page_title' => 'Footer',
+		'menu_title' => 'Footer',
+		'menu_slug'  => 'shcp-footer',
+		'capability' => 'edit_posts',
+		'icon_url'   => 'dashicons-editor-alignleft',
+		'position'   => 59,
+		'redirect'   => false,
+	) );
+} );
+
+add_action( 'acf/include_fields', function () {
+	$per_lang = function ( $lang, $label ) {
+		return array(
+			array( 'key' => "field_shcp_footer_tab_$lang", 'label' => $label, 'type' => 'tab', 'placement' => 'top' ),
+			array( 'key' => "field_shcp_footer_company_$lang", 'name' => "footer_company_$lang", 'label' => 'Company name', 'type' => 'text' ),
+			array( 'key' => "field_shcp_footer_address_$lang", 'name' => "footer_address_$lang", 'label' => 'Address', 'type' => 'textarea', 'rows' => 3, 'new_lines' => '', 'instructions' => 'Each line break shows as a new line in the footer.' ),
+			array( 'key' => "field_shcp_footer_about_$lang", 'name' => "footer_about_$lang", 'label' => 'About text', 'type' => 'textarea', 'rows' => 4 ),
+		);
+	};
+	acf_add_local_field_group( array(
+		'key'      => 'group_shcp_footer',
+		'title'    => 'Footer',
+		'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'shcp-footer' ) ) ),
+		'fields'   => array_merge(
+			array(
+				array( 'key' => 'field_shcp_footer_tab_contact', 'label' => 'Contact details', 'type' => 'tab', 'placement' => 'top' ),
+				array( 'key' => 'field_shcp_footer_email', 'name' => 'footer_email', 'label' => 'Email', 'type' => 'email', 'instructions' => 'Shared by both languages.' ),
+				array( 'key' => 'field_shcp_footer_tel', 'name' => 'footer_tel', 'label' => 'Telephone', 'type' => 'text', 'wrapper' => array( 'width' => 50 ) ),
+				array( 'key' => 'field_shcp_footer_fax', 'name' => 'footer_fax', 'label' => 'Fax', 'type' => 'text', 'wrapper' => array( 'width' => 50 ) ),
+			),
+			$per_lang( 'en', 'English' ),
+			$per_lang( 'id', 'Bahasa Indonesia' )
+		),
+	) );
+} );
+
+// Value of a footer field for the current language; falls back to the built-in text while the field is empty.
+function shcp_footer_field( $name ) {
+	$key = in_array( $name, array( 'company', 'address', 'about' ), true )
+		? 'footer_' . $name . '_' . ( ( function_exists( 'pll_current_language' ) ? pll_current_language() : 'en' ) === 'id' ? 'id' : 'en' )
+		: 'footer_' . $name;
+	$value = function_exists( 'get_field' ) ? get_field( $key, 'option' ) : '';
+	return trim( (string) $value ) !== '' ? $value : ( shcp_footer_defaults()[ $key ] ?? '' );
+}
+
+// [shcp_footer part=address|about]
+add_shortcode( 'shcp_footer', function ( $atts ) {
+	if ( 'about' === ( $atts['part'] ?? '' ) ) {
+		return '<p class="shcp-t">' . nl2br( esc_html( shcp_footer_field( 'about' ) ) ) . '</p>';
+	}
+	$lines = array( nl2br( esc_html( shcp_footer_field( 'address' ) ) ) );
+	if ( $email = shcp_footer_field( 'email' ) ) {
+		$lines[] = 'Email: <a href="mailto:' . esc_attr( $email ) . '">' . esc_html( $email ) . '</a>';
+	}
+	$phones = array_filter( array(
+		( $tel = shcp_footer_field( 'tel' ) ) ? 'Tel: ' . esc_html( $tel ) : '',
+		( $fax = shcp_footer_field( 'fax' ) ) ? 'Fax: ' . esc_html( $fax ) : '',
+	) );
+	if ( $phones ) {
+		$lines[] = implode( ', ', $phones );
+	}
+	return '<p class="shcp-footer-name">' . esc_html( shcp_footer_field( 'company' ) ) . '</p><p class="shcp-t">' . implode( '<br>', array_filter( $lines ) ) . '</p>';
+} );

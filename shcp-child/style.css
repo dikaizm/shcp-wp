@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 1.9.7
+Version: 1.9.9
 Text Domain: shcp
 */
 
@@ -62,7 +62,8 @@ html { scroll-padding-top: 120px; }
 .shcp-footer .shcp-menu ul { justify-content: flex-end; }
 .shcp-footer .shcp-menu a { padding: 16px; }
 .shcp-footer .shcp-menu li:last-child a { padding-right: 0; }
-.shcp-footer .shcp-t { margin: 0; color: #383838; font: 500 16px/24px Poppins, sans-serif; }
+.shcp-footer .shcp-t { margin: 0; color: #383838; font: 500 16px/24px Poppins, sans-serif; letter-spacing: .5px; }
+.shcp-footer .shcp-footer-name { margin: 0 0 15px; color: #383838; font: 500 18px/26px Poppins, sans-serif; letter-spacing: .5px; }
 .shcp-footer a[href^="mailto"] { color: inherit; }
 
 /* ---------- Hero glass card + cut-out person ---------- */
@@ -325,8 +326,7 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 	.m-body.elementor-widget-text-editor { font-size: 14px !important; line-height: 20px !important; font-weight: 500 !important; letter-spacing: .5px !important; }
 	.m-body-r.elementor-widget-text-editor { font-size: 14px !important; line-height: 20px !important; font-weight: 400 !important; letter-spacing: 0 !important; }
 	.m-foot.elementor-widget-text-editor, .shcp-footer .shcp-t { font-size: 12px !important; line-height: 18px !important; font-weight: 500 !important; letter-spacing: .5px !important; color: #383838; }
-	.m-foot span { font-size: inherit !important; line-height: inherit !important; }
-	.m-foot p, .shcp-footer .shcp-t p { margin: 0 0 8px; }
+	.shcp-footer .shcp-footer-name { margin: 0 0 8px; font-size: 12px; line-height: 18px; letter-spacing: .5px; }
 	.m-card-title .elementor-heading-title { font-size: 14px !important; line-height: 20px !important; font-weight: 500 !important; letter-spacing: .5px !important; }
 	:is(.m-title, .m-sub, .m-body, .m-body-r, .m-foot) p:last-child { margin-bottom: 0; }
 	.m-btn .elementor-button { font-size: 16px !important; line-height: 24px !important; padding: 8px 16px !important; }
