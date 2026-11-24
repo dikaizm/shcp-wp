@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 1.8.5
+Version: 1.8.6
 Text Domain: shcp
 */
 
@@ -82,7 +82,7 @@ html { scroll-padding-top: 120px; }
 .shcp-ov-358 { --ov: 358; } .shcp-ov-325 { --ov: 325; } .shcp-ov-319 { --ov: 319; }
 .shcp-pr-308 { --pr: 308; } .shcp-pr-228 { --pr: 228; } .shcp-pr-280 { --pr: 280; }
 @media (min-width: 768px) {
-	.shcp-hero-wrap > .e-con-inner > .shcp-glass { flex: 0 1 auto; min-width: 0; align-self: flex-start; margin-top: 100px; } /* margin, not padding: the hero stays exactly Figma's height */
+	.shcp-hero-wrap > .e-con-inner > .shcp-glass { flex: 0 1 auto; min-width: 0; align-self: flex-start; margin-top: 100px; margin-bottom: 60px; } /* margins, not padding: the hero stays exactly Figma's height unless the card is tall, then it keeps 60px clear of the bottom edge */
 	.shcp-hero-wrap > .e-con-inner > .shcp-glass[class*="shcp-pr-"] { padding-right: min(calc(var(--pr) * 1px), calc(var(--pr) / 14.4 * 1vw)) !important; }
 	.shcp-hero-wrap .shcp-hero-person.shcp-attached {
 		flex: none; align-self: flex-end; position: relative; z-index: 3;
@@ -116,7 +116,7 @@ html { scroll-padding-top: 120px; }
 .shcp-slide__bg { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; }
 .shcp-slide::before { content: ""; position: absolute; inset: 0; z-index: 1; background: rgba(56, 56, 56, .6); mix-blend-mode: multiply; }
 .shcp-slide__inner { flex: 1 1 auto; width: 100%; position: relative; z-index: 2; display: flex; box-sizing: border-box; min-height: 720px; max-width: 1280px; margin: 0 auto; padding: 100px 16px 0; }
-.shcp-slide__card { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; flex: 0 1 960px; min-width: 0; align-self: flex-start; max-width: 100%; padding: 40px min(308px, 21.39vw) 40px 40px; }
+.shcp-slide__card { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; flex: 0 1 960px; min-width: 0; align-self: flex-start; margin-bottom: 60px; max-width: 100%; padding: 40px min(308px, 21.39vw) 40px 40px; }
 .shcp-slide__title { margin: 0; color: var(--shcp-navy); font: 700 48px/56px Poppins, sans-serif; letter-spacing: .5px; }
 .shcp-slide__text { margin: 0; color: var(--shcp-navy); font: 500 20px/30px Poppins, sans-serif; letter-spacing: .5px; }
 .shcp-slide__person { flex: none; align-self: flex-end; position: relative; z-index: 3; display: block; height: auto; width: min(600px, 41.67vw); margin: 0 0 0 calc(-1 * min(329px, 22.85vw)); }
