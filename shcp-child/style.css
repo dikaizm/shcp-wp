@@ -1,7 +1,7 @@
 /*
 Theme Name: SHCP
 Template: hello-elementor
-Version: 1.7.0
+Version: 1.7.5
 Text Domain: shcp
 */
 
@@ -75,9 +75,21 @@ html { scroll-padding-top: 120px; }
 /* Laptop widths: cut-outs scale with the screen like the 1440 design (658/571/880 of 1440) */
 .e-con.shcp-hero { overflow: hidden; --overflow: hidden; }
 @media (min-width: 1025px) and (max-width: 1440px) {
-	.elementor-widget.shcp-hp-658 { width: 45.69vw !important; }
-	.elementor-widget.shcp-hp-571 { width: 39.65vw !important; }
 	.elementor-widget.shcp-hp-880 { width: 61.11vw !important; }
+}
+/* Hero cut-out attached to the card's right edge (card + person are one flex row).
+   Sizes are Figma px at 1440, scaled with the viewport below that. */
+.shcp-hp-658 { --pw: 658; } .shcp-hp-571 { --pw: 571; } .shcp-hp-600 { --pw: 600; }
+.shcp-ov-358 { --ov: 358; } .shcp-ov-325 { --ov: 325; } .shcp-ov-319 { --ov: 319; }
+.shcp-pr-308 { --pr: 308; } .shcp-pr-228 { --pr: 228; } .shcp-pr-280 { --pr: 280; }
+@media (min-width: 1025px) {
+	.shcp-hero-wrap > .e-con-inner > .shcp-glass { flex: 0 1 auto; min-width: 0; align-self: flex-start; margin-top: 100px; } /* margin, not padding: the hero stays exactly Figma's height */
+	.shcp-hero-wrap > .e-con-inner > .shcp-glass[class*="shcp-pr-"] { padding-right: min(calc(var(--pr) * 1px), calc(var(--pr) / 14.4 * 1vw)) !important; }
+	.shcp-hero-wrap .shcp-hero-person.shcp-attached {
+		flex: none; align-self: flex-end; position: relative; z-index: 3;
+		width: min(calc(var(--pw) * 1px), calc(var(--pw) / 14.4 * 1vw)) !important;
+		margin: 0 0 0 calc(-1 * min(calc(var(--ov) * 1px), calc(var(--ov) / 14.4 * 1vw))) !important;
+	}
 }
 /* Laptop widths: header nav fits beside the logo */
 @media (min-width: 1025px) and (max-width: 1280px) {
@@ -98,11 +110,11 @@ html { scroll-padding-top: 120px; }
 .shcp-slide.is-active { opacity: 1; visibility: visible; }
 .shcp-slide__bg { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; }
 .shcp-slide::before { content: ""; position: absolute; inset: 0; z-index: 1; background: rgba(56, 56, 56, .6); mix-blend-mode: multiply; }
-.shcp-slide__inner { position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; padding: 100px 16px 0; }
-.shcp-slide__card { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; width: 960px; max-width: 100%; padding: 40px 308px 40px 40px; }
+.shcp-slide__inner { position: relative; z-index: 2; display: flex; box-sizing: border-box; min-height: 720px; max-width: 1280px; margin: 0 auto; padding: 100px 16px 0; }
+.shcp-slide__card { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; flex: 0 1 960px; min-width: 0; align-self: flex-start; max-width: 100%; padding: 40px min(308px, 21.39vw) 40px 40px; }
 .shcp-slide__title { margin: 0; color: var(--shcp-navy); font: 700 48px/56px Poppins, sans-serif; letter-spacing: .5px; }
 .shcp-slide__text { margin: 0; color: var(--shcp-navy); font: 500 20px/30px Poppins, sans-serif; letter-spacing: .5px; }
-.shcp-slide__person { position: absolute; z-index: 3; left: 50.625%; bottom: 0; width: 600px; height: auto; }
+.shcp-slide__person { flex: none; align-self: flex-end; position: relative; z-index: 3; display: block; height: auto; width: min(600px, 41.67vw); margin: 0 0 0 calc(-1 * min(329px, 22.85vw)); }
 .shcp-slider__dots { position: absolute; z-index: 4; bottom: 84px; right: max(16px, calc((100% - 1248px) / 2)); display: flex; gap: 24px; }
 .shcp-slider__dots button { width: 16px; height: 16px; padding: 0; border: 1px solid #fff; border-radius: 50%; background: #fff; cursor: pointer; }
 .shcp-slider__dots button:hover, .shcp-slider__dots button:focus { background: #fff; }
@@ -135,10 +147,11 @@ html { scroll-padding-top: 120px; }
 .shcp-bordered img { border: 1px solid #fff; }
 /* CTA band: photo pinned to the bottom-right corner at any width */
 @media (min-width: 1025px) {
-	.shcp-cta { position: relative; }
-	.shcp-cta > .shcp-cta-right { position: absolute; right: 0; bottom: 0; width: min(640px, 44.5vw); }
+	/* Figma: 743x530 photo whose right 142px run past the band's edge; scaled with the screen below 1440 */
+	.shcp-cta { position: relative; overflow: hidden; }
+	.shcp-cta > .shcp-cta-right { position: absolute; right: calc(-1 * min(142px, 9.86vw)); bottom: 0; width: min(743px, 51.6vw); }
 }
-.shcp-cta-img { width: 100%; }
+.shcp-cta-img { width: 100% !important; }
 .shcp-cta-img img { display: block; width: 100%; }
 
 /* ---------- Stats ---------- */
@@ -227,15 +240,23 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 	.shcp-menu a { padding: 12px; font-size: 16px; }
 	.shcp-benefits { grid-template-columns: repeat(2, 1fr); }
 	.shcp-offices { grid-template-columns: repeat(2, 1fr); }
-	.shcp-hero-person, .shcp-slide__person { display: none; }
-	.shcp-slide__card { padding-right: 40px; }
-	.shcp-cta-img { margin-left: auto; }
+	/* Cut-outs stay visible: stacked under the card, attached to its right edge, fixed size */
+	.shcp-hero, .shcp-hero-wrap, .shcp-slide, .shcp-slide__inner { min-height: 0 !important; }
+	.shcp-hero-wrap > .e-con-inner > .shcp-glass { width: 100% !important; }
+	.shcp-hero-wrap .shcp-hero-person.shcp-attached { flex: none; position: relative; z-index: 3; align-self: flex-end; width: 400px !important; margin: -80px 0 0 !important; }
+	.shcp-slide__inner { flex-direction: column; }
+	.shcp-slide__card { flex: none; width: 100%; padding: 40px 40px 80px; }
+	.shcp-slide__person { align-self: flex-end; width: 400px; margin: -80px 0 0; }
+	.shcp-hero-person--contact { position: static !important; align-self: flex-end !important; width: 560px !important; margin: 0 !important; }
+	.shcp-hero-person--contact img { height: 407px !important; aspect-ratio: auto; }
+	.shcp-cta-img { width: 560px !important; max-width: 100%; margin-left: auto; }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
-	.shcp-hero, .shcp-detail-hero { min-height: 0 !important; padding: 0 40px 80px !important; }
+	.shcp-hero { padding: 0 40px 0 !important; }
+	.shcp-detail-hero { min-height: 0 !important; padding: 0 40px 80px !important; }
 	.shcp-detail-hero { background-size: cover !important; }
-	.shcp-slide__inner { padding: 100px 40px 80px; }
-	.shcp-slide { min-height: 0; }
+	.shcp-slide__inner { padding: 60px 40px 80px; }
+	.shcp-slide__inner:has(.shcp-slide__person) { padding-bottom: 0; }
 	.e-con.shcp-stat { width: calc(25% - 30px) !important; }
 	/* Swipe rows (tablet + mobile): strengths 240, office photos 284 */
 	.shcp-scroll-x, .shcp-scroll-x > .e-con-inner { flex-direction: row !important; flex-wrap: nowrap !important; overflow-x: auto !important; max-width: 100%; scroll-snap-type: x mandatory; justify-content: flex-start !important; scrollbar-width: none; }
@@ -302,19 +323,20 @@ details.shcp-spec[open] > summary { margin-bottom: 24px; }
 	/* Hero: card at y63 (pad 24/24/80/24), 390x355 cut-out pinned to the bottom, over the card */
 	.shcp-hero { flex-direction: column !important; justify-content: flex-start !important; }
 	.shcp-hero .shcp-glass { width: 360px !important; max-width: 100%; margin: 0 auto; background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, .5) 100%); }
-	.shcp-hero-person { display: block; position: absolute !important; inset: auto auto 0 0 !important; width: 100% !important; max-width: none; margin: 0; z-index: 1; }
-	.shcp-hero-person img { height: 355px; object-fit: contain; object-position: center bottom; }
-	.shcp-hero-person--contact img { height: 283px !important; aspect-ratio: auto; }
+	/* Mobile: cut-out is a fixed size (not screen-width based), in flow under the card, overlapping its bottom padding */
+	.shcp-hero-wrap .shcp-hero-person.shcp-attached { width: 355px !important; max-width: none; align-self: center; margin: -80px 0 0 !important; }
+	.shcp-hero-person--contact { width: 389px !important; max-width: none; align-self: center !important; }
+	.shcp-hero-person--contact img { height: 283px !important; }
 	.shcp-glass--top { z-index: 2; }
 
 	/* Hero carousel: same layout as the other heroes */
-	.shcp-slide { min-height: 800px; }
-	.shcp-slide__inner { padding: 63px 15px 0; }
-	.shcp-slide__card { width: 360px; margin: 0 auto; padding: 24px 24px 80px; gap: 24px; background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, .5) 100%); }
+	.shcp-slide__inner { padding: 63px 15px 80px; }
+	.shcp-slide__inner:has(.shcp-slide__person) { padding-bottom: 0; }
+	.shcp-slide__card { width: 360px; max-width: 100%; margin: 0 auto; padding: 24px 24px 80px; gap: 24px; background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, .5) 100%); }
 	.shcp-slide__title { font-size: 28px; line-height: 36px; font-weight: 600; letter-spacing: 0; }
 	.shcp-slide__text { font-size: 14px; line-height: 20px; }
 	.shcp-slide .shcp-btn { width: auto; font-size: 16px; line-height: 24px; padding: 8px 12px; }
-	.shcp-slide__person { display: block; left: 0; width: 100%; height: 355px; object-fit: contain; object-position: center bottom; }
+	.shcp-slide__person { align-self: center; width: 355px; height: 355px; max-width: none; margin: -80px 0 0; }
 	.shcp-slider__dots { bottom: 24px; right: 24px; gap: 16px; }
 	.shcp-slider__dots button { width: 12px; height: 12px; }
 

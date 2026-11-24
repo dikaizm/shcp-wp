@@ -241,17 +241,18 @@ def bg_image(name):
 # ---------- shared sections ----------
 
 def hero(lang, bg_name, person, title, body, cta, cta_link, height=720, card_w=960, text_w=612,
-         person_x=700, person_w=658, m_height=800):
-    # Mobile: card x15 y63 w360 (pad 24/24/80/24, gap 24); 390x355 cut-out pinned to the bottom of an m_height hero.
+         person_x=700, person_w=658, m_height=None):
+    # Card and cut-out are siblings in one row: the person overlaps the card's right edge by Figma's amount
+    # (ov) and stays attached to it at every width. Tablet/mobile stack it under the card (style.css).
+    pr = 40 + card_w - 80 - text_w          # card right padding that keeps the text clear of the person
+    ov = 98 + card_w - person_x             # overlap with the card at 1440
     card = con(heading(title, 48, tag_="h1"), text(body), button(cta, cta_link, icon="fas fa-chevron-down", small=True),
-               width=card_w, gap=32, pad=(40, 40 + card_w - 80 - text_w, 40, 40), classes="shcp-glass",
-               **pm(24, 24, 80, 24), **gm(24))
-    people = image(person, _position="absolute",
-                   _offset_orientation_h="start", _offset_x=px(round(person_x / 14.4, 2), "%"),
-                   _offset_orientation_v="end", _offset_y=px(0),
-                   _element_width="initial", _element_custom_width=px(person_w), _css_classes=f"shcp-hero-person shcp-hp-{person_w}")
-    return con(con(card, boxed=FRAME, pad=(100, 0, 0, 0), **pm(0)), people, full=True, min_h=height, bg=photo(bg_name),
-               classes="shcp-hero shcp-fx", min_height_mobile=px(m_height), **pm(63, 15, 0, 15))
+               width=card_w, gap=32, pad=(40, pr, 40, 40), classes=f"shcp-glass shcp-pr-{pr}",
+               padding_tablet=box(40, 40, 80, 40), **pm(24, 24, 80, 24), **gm(24))
+    people = image(person, _css_classes=f"shcp-hero-person shcp-attached shcp-hp-{person_w} shcp-ov-{ov}")
+    wrap = con(card, people, direction="row", boxed=FRAME, pad=(0, 0, 0, 0), min_h=height, classes="shcp-hero-wrap",
+               padding_tablet=box(60, 0, 0, 0), **pm(0))
+    return con(wrap, full=True, min_h=height, bg=photo(bg_name), classes="shcp-hero shcp-fx", **pm(63, 15, 0, 15))
 
 
 def stats(lang):
@@ -273,7 +274,7 @@ def cta_band(lang, body=None, label=None):
                    text(body or t["cta_body"], 20, WHITE), gap=16),
                button(label or t["cta_btn"], url(lang, "contact"), "white"),
                width=800, gap=40, pad=(120, 0, 120, 112), classes="shcp-gl-vw", **pm(80, 24, 40, 24), **gm(24))
-    right = con(image("cta-people", width=640, _css_classes="shcp-cta-img"), width=640, justify="flex-end", align="flex-end",
+    right = con(image("cta-team", _css_classes="shcp-cta-img"), width=743, justify="flex-end", align="flex-end",
                 classes="shcp-cta-right")
     return con(left, right, direction="row", full=True, align="stretch", bg=solid(GREEN), classes="shcp-cta", **gm(0))
 
@@ -509,11 +510,11 @@ def contact_page(lang):
         con(con(heading(t["contact_title"], 48, tag_="h1"), text(t["contact_body"]),
                 button(t["contact_btn"], "#form", icon="fas fa-chevron-down", classes="shcp-hide-mobile"),
                 width=640, gap=32, pad=(40,), classes="shcp-glass shcp-glass--down shcp-glass--top", **pm(24), **gm(24)),
-            boxed=FRAME, pad=(120, 0, 0, 0), classes="shcp-hero-front", **pm(0)),
-        image("cta-people", _position="absolute", _offset_orientation_h="end",
+            boxed=FRAME, pad=(120, 0, 0, 0), classes="shcp-hero-front", padding_tablet=box(60, 0, 0, 0), **pm(0)),
+        image("cta-team", _position="absolute", _offset_orientation_h="end",
               _offset_x_end=px(0), _offset_orientation_v="end", _offset_y=px(0),
               _element_width="initial", _element_custom_width=px(880), _css_classes="shcp-hero-person shcp-hero-person--contact shcp-hp-880"),
-        full=True, min_h=640, bg=solid(GREEN), classes="shcp-hero shcp-fx", min_height_mobile=px(600), **pm(60, 15, 0, 15))
+        full=True, min_h=640, bg=solid(GREEN), classes="shcp-hero shcp-fx", **pm(60, 15, 0, 15))
     states = (f'<div class="shcp-form-state" data-state="ok" hidden><img src="{ICONS}icon-success.svg" alt="" width="200" height="199">'
               f'<p class="shcp-form-state__msg" data-template="{t["f_ok"]}"></p>'
               f'<a class="shcp-btn" href="{url(lang, "home")}">{t["f_ok_home"]}</a></div>'

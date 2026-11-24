@@ -299,7 +299,7 @@ add_shortcode( 'shcp_hero_slider', function () {
 				esc_url( $s['button']['url'] ), $s['button']['target'] ? ' target="_blank" rel="noopener"' : '',
 				esc_html( $s['button']['title'] ?: shcp_t( 'learn_more' ) ), str_starts_with( $s['button']['url'], '#' ) ? 'down' : 'right' );
 		}
-		$out .= sprintf( '<div class="shcp-slide%s" aria-roledescription="slide" aria-label="%d / %d"%s>%s<div class="shcp-slide__inner"><div class="shcp-glass shcp-slide__card"><%s class="shcp-slide__title">%s</%s>%s%s</div></div>%s</div>',
+		$out .= sprintf( '<div class="shcp-slide%s" aria-roledescription="slide" aria-label="%d / %d"%s>%s<div class="shcp-slide__inner"><div class="shcp-glass shcp-slide__card"><%s class="shcp-slide__title">%s</%s>%s%s</div>%s</div></div>',
 			$first ? ' is-active' : '', $i + 1, count( $slides ), $first ? '' : ' aria-hidden="true"',
 			wp_get_attachment_image( $s['background'], 'full', false, array( 'class' => 'shcp-slide__bg', 'alt' => '', 'loading' => 'eager', 'sizes' => '100vw' ) ),
 			$tag, esc_html( $s['title'] ), $tag,
